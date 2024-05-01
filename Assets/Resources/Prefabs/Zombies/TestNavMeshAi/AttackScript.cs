@@ -9,6 +9,8 @@ public class AttackScript : MonoBehaviour
     public bool player = false;
     public bool zombie = false;
 
+    public int dano;
+
     public DetectionCollider collider1;
    void OnTriggerEnter(Collider collider)
    {
@@ -16,7 +18,7 @@ public class AttackScript : MonoBehaviour
         {
             if(collider.CompareTag("Build"))
             {
-                collider.GetComponent<ObjectStatus>().ReceberDano(10);
+                collider.GetComponent<ObjectStatus>().ReceberDano(dano);
             }
             else
             {
@@ -27,18 +29,14 @@ public class AttackScript : MonoBehaviour
         {
             if(collider.CompareTag("Player"))
             {
-                collider.GetComponent<PlayerStatus>().ReceberDano(10);
-            }
-            else
-            {
-                collider1.Attack = false;
+                collider.GetComponent<PlayerStatus>().ReceberDano(dano);
             }
         }
         if(zombie)
         {
             if(collider.CompareTag("Zombie"))
             {
-                collider.GetComponent<EnemyStatus>().ReceberDano(10);
+                collider.GetComponent<EnemyStatus>().ReceberDano(dano);
             }
         }
    }

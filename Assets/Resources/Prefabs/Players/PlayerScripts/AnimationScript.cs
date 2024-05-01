@@ -34,7 +34,7 @@ public class AnimationScript : MonoBehaviour
     {
         healthPercentage = status.vidaAtual/status.vidaTotal;
        
-
+        animator.SetFloat("Life", status.vidaAtual);
         animator.SetBool("Pistol", InputControllers.pistol);
         animator.SetFloat("InputX",inputControllers.movimentoHorizontal);
         animator.SetFloat("InputY",inputControllers.movimentoVertical);

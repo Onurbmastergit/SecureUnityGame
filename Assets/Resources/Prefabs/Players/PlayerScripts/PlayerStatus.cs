@@ -14,7 +14,6 @@ public class PlayerStatus : MonoBehaviour
 
     void Start()
     {
-
         vidaAtual = vidaTotal;
     }
     void Update()
