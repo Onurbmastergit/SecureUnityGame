@@ -14,11 +14,6 @@ public class DetectionCollider : MonoBehaviour
         { 
             Attack = true;
         }
-        else
-        {
-            Attack = false;
-        }
-         
     }
     void OnTriggerExit(Collider collider)
     {
@@ -26,6 +21,5 @@ public class DetectionCollider : MonoBehaviour
         {
             Attack = false;
         }
-       Attack = false;
     }
 }

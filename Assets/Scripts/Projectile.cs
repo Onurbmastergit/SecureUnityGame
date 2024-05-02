@@ -27,4 +27,11 @@ public class Projectile : MonoBehaviour
 
         transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
     }
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.CompareTag("Zombie"))
+        {
+            collider.GetComponent<EnemyStatus>().ReceberDano(5);
+        }
+    }
 }

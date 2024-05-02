@@ -11,6 +11,7 @@ public class ObjectStatus : MonoBehaviour
    public int vidaTotal;
    public UnityEngine.UI.Image vidaObject;
    public VfxColor color;
+   public Collider colliderObj;
 
     private void Start()
    {
@@ -40,8 +41,12 @@ public class ObjectStatus : MonoBehaviour
    {
     if(vidaAtual <= 0)
     {
-        transform.gameObject.GetComponent<Collider>().enabled = false;
-        Destroy(gameObject);
+       transform.Translate(0,-10,0);
+        Invoke("Morte", 0.5f);
     }
+   }
+   void Morte()
+   {
+    Destroy(gameObject);
    }
 }
