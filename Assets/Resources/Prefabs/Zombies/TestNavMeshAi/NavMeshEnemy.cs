@@ -16,6 +16,7 @@ public class NavMeshEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         status = GetComponent<EnemyStatus>();
         point = GameObject.FindWithTag("HouseDefender").transform;
+        agent.SetDestination(point.position);
     }
 
    
@@ -24,7 +25,7 @@ public class NavMeshEnemy : MonoBehaviour
         if (enemyManager.buildOn.Attack == false && status.tomouDano == false && status.vidaAtual > 0 )
         {
             agent.enabled = true;
-            agent.SetDestination(point.position);
+            //agent.SetDestination(point.position);
         }
         else 
         {

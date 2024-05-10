@@ -125,7 +125,7 @@ public class Menu : MonoBehaviour
 
     public void ButtonBuild()
     {
-        inputControllers.build = menuBuild.activeSelf; 
+        inputControllers.build = true; 
         if (!menuBuild.activeSelf) menuBuild.SetActive(true);
         else menuBuild.SetActive(false);   
     }

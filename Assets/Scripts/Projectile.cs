@@ -31,7 +31,8 @@ public class Projectile : MonoBehaviour
     {
         if(collider.CompareTag("Zombie"))
         {
-            collider.GetComponent<EnemyStatus>().ReceberDano(5);
+            collider.GetComponent<EnemyStatus>().ReceberDano(10);
+            Destroy(gameObject);
         }
     }
 }

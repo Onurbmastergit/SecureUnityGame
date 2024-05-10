@@ -17,6 +17,7 @@ public class ObjectStatus : MonoBehaviour
    {
     vidaAtual = vidaTotal;
     color = gameObject.GetComponent<VfxColor>();
+    transform.Rotate(-90, 0, 0);
    }
    void Update()//teste
    {
