@@ -7,6 +7,7 @@ public class PlayerMoves : MonoBehaviour
     public float moveSpeed = 10f; // Velocidade de movimento do jogador
     public float rotationSpeed = 10f; // Velocidade de rotação do jogador
     Vector3 movement;
+    public bool acessibilidade;
 
     private CharacterController controller; // Componente CharacterController do jogador
     private InputControllers inputController;
@@ -19,8 +20,17 @@ public class PlayerMoves : MonoBehaviour
 
     void Update()
     {
+        if(acessibilidade == false)
+        {
         MovePlayer(); // Movimentar o jogador
         RotatePlayer(); // Rotacionar o jogador em direção ao cursor
+        }
+       
+
+        if(acessibilidade == true)
+        {
+            MoveAcess();
+        }
     }
 
     void MovePlayer()
@@ -64,6 +74,34 @@ public class PlayerMoves : MonoBehaviour
     // Rotacionar o jogador diretamente em direção à direção calculada sem suavização
     Quaternion rotation = Quaternion.LookRotation(lookDirection);
     transform.rotation = rotation;
-    
+    }
+
+    void MoveAcess()
+    {
+      // Obter entrada do teclado para movimento
+    float moveHorizontal = inputController.movimentoHorizontal;
+    float moveVertical = inputController.movimentoVertical;
+
+    // Calcular a direção de movimento
+    movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+    movement = transform.TransformDirection(movement); // Converter para coordenadas locais
+    movement *= moveSpeed * Time.deltaTime;
+
+    // Mover o jogador usando o CharacterController
+    controller.Move(movement);
+
+    if (movement != Vector3.zero)
+    {
+        // Calcular a direção para a qual o jogador deve se orientar com base no vetor de movimento
+        Quaternion targetRotation = Quaternion.LookRotation(movement);
+
+        // Suavizar a rotação usando Slerp
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    if (inputController.Run)
+    {
+        RunPlayer();
+    }
     }
 }
