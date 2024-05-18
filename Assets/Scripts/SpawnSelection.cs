@@ -36,10 +36,12 @@ public class SpawnSelection : MonoBehaviour
         if(i == spawn )
         {
          spawns[i].SetActive(true);
+         spawns[i].GetComponent<SpawnSystem>().enableSpawn = true;
         }
         else
         {
-            spawns[i].SetActive(false);                                                                                                                                                                     
+        spawns[i].SetActive(false);
+        spawns[i].GetComponent<SpawnSystem>().enableSpawn = false;                                                                                                                                                                     
         }
     }
     enableRandom = false;    

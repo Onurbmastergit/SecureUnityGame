@@ -6,22 +6,22 @@ public class SpawnSystem : MonoBehaviour
 {
      public GameObject enemyPrefab;
     public Transform spawnPoint;
-
-    void Update()
+    public bool enableSpawn ;
+    void Start()
     {
-        if(LevelManager.instance.nightStart)
-        {
-            Invoke("SpawnEnemy", 3);
-        }
-        
+        InvokeRepeating("SpawnEnemy" , 3, 5);
     }
     void SpawnEnemy()
     {
-        // Obtém a posição aleatória dentro da área de spawn
+        if(LevelManager.instance.nightStart && enableSpawn)
+        {
+             // Obtém a posição aleatória dentro da área de spawn
         Vector3 randomPosition = GetRandomSpawnPositionWithinBounds(spawnPoint.position, spawnPoint.localScale);
 
         // Instancia o inimigo na posição aleatória
         Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+        }
+       
     }
 
     Vector3 GetRandomSpawnPositionWithinBounds(Vector3 center, Vector3 size)
