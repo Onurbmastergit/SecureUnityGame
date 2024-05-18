@@ -29,6 +29,10 @@ public class EnemyStatus : MonoBehaviour
         float fillAmount = (float)vidaAtual/vidaBase;
         LifeBar.fillAmount = fillAmount;
         animator.SetInteger("Death", vidaAtual);
+        if(LevelManager.instance.dayStart)
+        {
+            vidaAtual = 0;
+        }
     }
     public void ReceberDano(int dano) 
     {
@@ -43,12 +47,12 @@ public class EnemyStatus : MonoBehaviour
         if (vidaAtual <= 0) 
         {
             animator.SetBool("Hit", false);
-            Destroy(rb);
             agent.enabled = false;
         }
     }
     public void Morte()
     {
+        Destroy(rb);
         Destroy(gameObject);
     }
     public void DisableAnimation() 

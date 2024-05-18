@@ -7,9 +7,13 @@ public class SpawnSystem : MonoBehaviour
      public GameObject enemyPrefab;
     public Transform spawnPoint;
 
-    void Start()
+    void Update()
     {
-        InvokeRepeating("SpawnEnemy",5,3);
+        if(LevelManager.instance.nightStart)
+        {
+            Invoke("SpawnEnemy", 3);
+        }
+        
     }
     void SpawnEnemy()
     {
