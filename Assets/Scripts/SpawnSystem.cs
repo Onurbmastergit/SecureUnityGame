@@ -7,6 +7,7 @@ public class SpawnSystem : MonoBehaviour
      public GameObject enemyPrefab;
     public Transform spawnPoint;
     public bool enableSpawn ;
+    public string direcaoSpawn;
     void Start()
     {
         InvokeRepeating("SpawnEnemy" , 3, 5);

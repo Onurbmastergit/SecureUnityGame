@@ -12,7 +12,8 @@ public class SpawnSelection : MonoBehaviour
         instacia = this;
     }
    public static int spawn;
-   public bool enableRandom ;
+   public bool enableRandom;
+   public string spawnDirecao;
    public List<GameObject> spawns;
     void Update()
     {
@@ -36,7 +37,9 @@ public class SpawnSelection : MonoBehaviour
         if(i == spawn )
         {
          spawns[i].SetActive(true);
+         spawnDirecao = spawns[i].GetComponent<SpawnSystem>().direcaoSpawn;
          spawns[i].GetComponent<SpawnSystem>().enableSpawn = true;
+         Debug.Log($"{spawnDirecao}");
         }
         else
         {
