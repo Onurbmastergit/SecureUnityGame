@@ -1,21 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class SpawnSelection : MonoBehaviour
+public class SpawnSelection : NetworkBehaviour
 {
     public static SpawnSelection instacia;
+    public static int spawn;
+    public bool enableRandom;
+    public string spawnDirecao;
+    public List<GameObject> spawns;
 
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        InvokeRepeating("Update_Server",0,0.1f);
+    }
+   
     void Awake()
     {
         instacia = this;
     }
-   public static int spawn;
-   public bool enableRandom;
-   public string spawnDirecao;
-   public List<GameObject> spawns;
-    void Update()
+
+   [Server]
+    void Update_Server()
     {
         if(LevelManager.instance.currentHour == 20)
         {
@@ -32,6 +42,8 @@ public class SpawnSelection : MonoBehaviour
             }           
         }
     }
+    
+  [Server]  
   void SelectionSpawn()
   {
     for(int i = 0; i < spawns.Count; i++)
@@ -51,6 +63,8 @@ public class SpawnSelection : MonoBehaviour
     enableRandom = false;    
 
   }
+
+  [Server]
   public void RandomizarNumero()
   {
     if(enableRandom == true)

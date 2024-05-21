@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using UnityEngine;
 using UnityEngine.ProBuilder;
 
-public class AttackScript : MonoBehaviour
+public class AttackScript : NetworkBehaviour
 {
     public bool build =  false;
     public bool player = false;

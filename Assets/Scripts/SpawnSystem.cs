@@ -1,26 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using UnityEngine;
 
-public class SpawnSystem : MonoBehaviour
+public class SpawnSystem : NetworkBehaviour
 {
-     public GameObject enemyPrefab;
+    public GameObject enemyPrefab;
     public Transform spawnPoint;
     public bool enableSpawn ;
     public string direcaoSpawn;
-    void Start()
+    public override void OnStartServer()
     {
-        InvokeRepeating("SpawnEnemy" , 3, 5);
+        base.OnStartServer();
+        
+        InvokeRepeating("SpawnEnemy" , 3, 3);
+        
     }
+
+    [Server]
     void SpawnEnemy()
     {
-        if(LevelManager.instance.nightStart && enableSpawn)
+        if(base.ClientManager.Clients.Count > 0)
         {
+            if(LevelManager.instance.nightStart && enableSpawn)
+            {
              // Obtém a posição aleatória dentro da área de spawn
-        Vector3 randomPosition = GetRandomSpawnPositionWithinBounds(spawnPoint.position, spawnPoint.localScale);
+             Vector3 randomPosition = GetRandomSpawnPositionWithinBounds(spawnPoint.position, spawnPoint.localScale);
 
-        // Instancia o inimigo na posição aleatória
-        Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+             // Instancia o inimigo na posição aleatória
+            GameObject enemyInstatiate = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+            base.Spawn(enemyInstatiate);
+            }
         }
        
     }
