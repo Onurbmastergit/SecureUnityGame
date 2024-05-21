@@ -17,16 +17,18 @@ public class SpawnSelection : MonoBehaviour
    public List<GameObject> spawns;
     void Update()
     {
-        if(LevelManager.instance.nightStart)
+        if(LevelManager.instance.currentHour == 20)
         {
             RandomizarNumero();
         }
-        if(LevelManager.instance.dayStart)
+        if(LevelManager.instance.currentHour == 6)
         {
+            spawnDirecao = null;
             enableRandom = true;
             for(int i = 0; i < spawns.Count; i++)
             {
                 spawns[i].SetActive(false);
+                spawns[i].GetComponent<SpawnSystem>().enableSpawn = false;
             }           
         }
     }
@@ -39,10 +41,9 @@ public class SpawnSelection : MonoBehaviour
          spawns[i].SetActive(true);
          spawnDirecao = spawns[i].GetComponent<SpawnSystem>().direcaoSpawn;
          spawns[i].GetComponent<SpawnSystem>().enableSpawn = true;
-         Debug.Log($"{spawnDirecao}");
         }
         else
-        {
+        {    
         spawns[i].SetActive(false);
         spawns[i].GetComponent<SpawnSystem>().enableSpawn = false;                                                                                                                                                                     
         }
