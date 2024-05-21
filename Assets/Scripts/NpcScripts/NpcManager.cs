@@ -12,9 +12,21 @@ public class NpcManager : MonoBehaviour
   int numberName;  
   public GameObject npcAlert;
   public GameObject outSinalTexture;
+  public GameObject radioButton;
   void Awake()
   {
     instacia = this;
+  }
+  void Update()
+  {
+    if(LevelManager.instance.currentHour <= 20)
+    {
+      radioButton.SetActive(true);
+    }
+    else if(LevelManager.instance.currentHour > 20)
+    {
+      radioButton.SetActive(false);
+    }
   }  
   public void Alert()
   {
@@ -24,8 +36,7 @@ public class NpcManager : MonoBehaviour
     NpcDialogues.instacia.ShowTextAlert();
     RandomizarNome();
     outSinalTexture.SetActive(false);
-    }
-        
+    }     
     
   }
   void Outsinal()

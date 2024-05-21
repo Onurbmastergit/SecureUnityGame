@@ -36,6 +36,11 @@ public class TextEffect : MonoBehaviour
         yield return new WaitForSeconds(duration);
         viewerAlert[selectionNumber].text += ctr[count];
         count++;
-     }  
+     }
+     Invoke("DisbleAlert", 3);  
+   }
+   void DisbleAlert()
+   {
+    NpcManager.instacia.npcAlert.SetActive(false);
    }
 }
