@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Connection;
+using FishNet.Object;
 using UnityEngine;
 
-public class PlayerMoves : MonoBehaviour
+public class PlayerMoves : NetworkBehaviour
 {
     public float moveSpeed = 10f; // Velocidade de movimento do jogador
     public float rotationSpeed = 10f; // Velocidade de rotação do jogador
@@ -12,14 +14,17 @@ public class PlayerMoves : MonoBehaviour
     private CharacterController controller; // Componente CharacterController do jogador
     private InputControllers inputController;
 
-    void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+        if(base.IsOwner == false) return;
         controller = GetComponent<CharacterController>();
         inputController = GetComponent<InputControllers>();
     }
 
     void Update()
     {
+        if(base.IsOwner == false) return;
         if(acessibilidade == false)
         {
         MovePlayer(); // Movimentar o jogador
@@ -35,7 +40,7 @@ public class PlayerMoves : MonoBehaviour
 
     void MovePlayer()
     {
-       
+       if(base.IsOwner == false) return;
         // Obter entrada do teclado para movimento
         float moveHorizontal = inputController.movimentoHorizontal;
         float moveVertical = inputController.movimentoVertical;
@@ -55,6 +60,7 @@ public class PlayerMoves : MonoBehaviour
     }
     void RunPlayer() 
     {
+        if(base.IsOwner == false) return;
         controller.Move(movement * 5 * Time.deltaTime);
         movement.Normalize();
     }
@@ -65,7 +71,7 @@ public class PlayerMoves : MonoBehaviour
     Vector3 mousePosition = Input.mousePosition;
 
     // Converter a posição do mouse de pixels para coordenadas do mundo
-    mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y - transform.position.y));
+    mousePosition = GameObject.Find("Main Camera").GetComponent<Camera>().ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, GameObject.Find("Main Camera").GetComponent<Camera>().transform.position.y - transform.position.y));
 
     // Calcular a direção para a qual o jogador deve se orientar
     Vector3 lookDirection = mousePosition - transform.position;
@@ -78,6 +84,7 @@ public class PlayerMoves : MonoBehaviour
 
     void MoveAcess()
     {
+        if(base.IsOwner == false) return;
       // Obter entrada do teclado para movimento
     float moveHorizontal = inputController.movimentoHorizontal;
     float moveVertical = inputController.movimentoVertical;

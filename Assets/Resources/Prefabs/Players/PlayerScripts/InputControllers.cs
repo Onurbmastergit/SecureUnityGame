@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using UnityEngine;
 
-public class InputControllers : MonoBehaviour
+public class InputControllers : NetworkBehaviour
 {
   public bool Attack;
   public bool Run;
@@ -12,12 +13,15 @@ public class InputControllers : MonoBehaviour
   public float movimentoHorizontal;
   public float movimentoVertical;
   public static bool pistol;  
-  void Start()
+  public override void OnStartClient()
   {
+    base.OnStartClient();
+    if(base.IsOwner == false) return;
     pistol = false;
   }
   void Update()
   {
+    if(base.IsOwner == false) return;
     movimentoHorizontal = Input.GetAxis("Horizontal");
 
     movimentoVertical = Input.GetAxis("Vertical");

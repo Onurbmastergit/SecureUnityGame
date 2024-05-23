@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using UnityEngine;
 
-public class AnimationScript : MonoBehaviour
+public class AnimationScript : NetworkBehaviour
 {
     [SerializeField]
     private GameObject attackCollider;
@@ -21,8 +22,10 @@ public class AnimationScript : MonoBehaviour
     public float smoothingSpeed;
     float healthPercentage;
 
-    void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+         if(base.IsOwner == false) return;
         status = GetComponent<PlayerStatus>();
         animator = GetComponent<Animator>();
         inputControllers = GetComponent<InputControllers>();
@@ -32,6 +35,7 @@ public class AnimationScript : MonoBehaviour
     }
     void Update()
     {
+         if(base.IsOwner == false) return;
         healthPercentage = status.vidaAtual/status.vidaTotal;
        
         animator.SetFloat("Life", status.vidaAtual);

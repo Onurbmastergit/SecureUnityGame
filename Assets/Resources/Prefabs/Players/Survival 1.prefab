@@ -1563,6 +1563,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 388991352381228454}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3517283853821610259}
   m_SourcePrefab: {fileID: 100100000, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
 --- !u!1 &1267103991687658199 stripped
 GameObject:
@@ -1607,6 +1610,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ff8e9fa762c6b4ab4044890da37f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 256025884089164188}
+  _networkObjectCache: {fileID: 256025884089164188}
   attackCollider: {fileID: 0}
   animator: {fileID: 0}
   playerMoves: {fileID: 0}
@@ -1628,6 +1634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0ebcbe51ddbf34a987d33bbdb9821e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 256025884089164188}
+  _networkObjectCache: {fileID: 256025884089164188}
   Attack: 0
   Run: 0
   build: 0
@@ -1645,8 +1654,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f1191212eebf1409eafc3e37a41620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 256025884089164188}
+  _networkObjectCache: {fileID: 256025884089164188}
   moveSpeed: 5
-  rotationSpeed: 0.7
+  rotationSpeed: 0
   acessibilidade: 0
 --- !u!114 &248205076845335741
 MonoBehaviour:
@@ -1756,7 +1768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 256025884089164188}
   _networkObjectCache: {fileID: 256025884089164188}
   _componentConfiguration: 0
@@ -1805,8 +1817,12 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
+  - {fileID: 2280101967296703313}
+  - {fileID: 7323392351451520839}
+  - {fileID: 5795727283732782910}
   - {fileID: 8052742240168083030}
   - {fileID: 388991352381228454}
+  - {fileID: -3517283853821610259}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField: []
   SerializedTransformProperties:
@@ -1827,7 +1843,7 @@ MonoBehaviour:
   _ownerInterpolation: 1
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 7
+  <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 774665742
   <SceneId>k__BackingField: 0
@@ -1844,11 +1860,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307f14fad78d3284ea29737d03b65a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 256025884089164188}
   _networkObjectCache: {fileID: 256025884089164188}
-  prefabCamera: {fileID: 6994676791353490058, guid: 40dc5c9753ac54d4d99bf30a473dd5ce, type: 3}
+  prefabCamera: {fileID: 7297650762122623893, guid: 363dcc842b4cfe04caec7ccea37060b2, type: 3}
   cameraTransform: {fileID: 0}
+--- !u!114 &-3517283853821610259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267103991687658199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 5
+  _addedNetworkObject: {fileID: 256025884089164188}
+  _networkObjectCache: {fileID: 256025884089164188}
+  IgnoredParameters: []
+  _animator: {fileID: 5493921117251320343}
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!4 &1747444948567119849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 366175167995203695, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
@@ -1867,6 +1904,11 @@ Transform:
 --- !u!4 &5145544387319173701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
+  m_PrefabInstance: {fileID: 2113526932485736326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5493921117251320343 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1a9dd059f7024584d8e36ff5df9c5f25, type: 3}
   m_PrefabInstance: {fileID: 2113526932485736326}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6623034332034534596 stripped
