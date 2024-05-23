@@ -27,18 +27,18 @@ public class PlayerMoves : NetworkBehaviour
         if(base.IsOwner == false) return;
         if(acessibilidade == false)
         {
-        MovePlayer(); // Movimentar o jogador
-        RotatePlayer(); // Rotacionar o jogador em direção ao cursor
+        MovePlayer(transform.GetComponent<PlayerMoves>().Owner); // Movimentar o jogador
+        RotatePlayer(transform.GetComponent<PlayerMoves>().Owner); // Rotacionar o jogador em direção ao cursor
         }
        
 
         if(acessibilidade == true)
         {
-            MoveAcess();
+            MoveAcess(transform.GetComponent<PlayerMoves>().Owner);
         }
     }
 
-    void MovePlayer()
+    void MovePlayer(NetworkConnection connection)
     {
        if(base.IsOwner == false) return;
         // Obter entrada do teclado para movimento
@@ -65,7 +65,7 @@ public class PlayerMoves : NetworkBehaviour
         movement.Normalize();
     }
 
-    void RotatePlayer()
+    void RotatePlayer(NetworkConnection connection)
     {
        // Obter a posição do mouse na tela
     Vector3 mousePosition = Input.mousePosition;
@@ -82,9 +82,9 @@ public class PlayerMoves : NetworkBehaviour
     transform.rotation = rotation;
     }
 
-    void MoveAcess()
+    void MoveAcess(NetworkConnection connection)
     {
-        if(base.IsOwner == false) return;
+    if(base.IsOwner == false) return;
       // Obter entrada do teclado para movimento
     float moveHorizontal = inputController.movimentoHorizontal;
     float moveVertical = inputController.movimentoVertical;
